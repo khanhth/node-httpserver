@@ -6,7 +6,11 @@ const PORT = 3000;
 
 // Hàm request handler
 function handleRequest(request, response){
-    response.end('Hello!\nURL address: ' + request.url);
+    if (request.url == '/') {
+    	response.end('Hello!\nURL: ' + request.url);
+    } else {
+    	response.end('Welcome to: ' + request.url);
+    }
 }
 
 // Khởi tạo server
@@ -16,6 +20,6 @@ var server = http.createServer(handleRequest);
 server.listen(PORT, function (err) {
     // Hàm callback: được gọi khi server chạy
 	if (!err) {
-	    console.log("Server chạy trên cổng: http://localhost:%s", PORT);
+	    console.log("Server listening on: http://localhost:%s", PORT);
 	}
 });
